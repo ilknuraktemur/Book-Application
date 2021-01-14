@@ -1,0 +1,125 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="main.master.cs" Inherits="WebApplication8.main" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+   <link href="StyleSheet1.css" rel="stylesheet" />
+    <title>bookrate</title>
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+
+    <script type="text/javascript">
+        $("document").ready(function () {
+            $("header nav ul li.cat-wrap").mouseover(function () {
+                $("header nav ul li.cat-wrap .sub").css("display", "block")
+            })
+             $("header nav ul li.cat-wrap").mouseleave(function () {
+                $("header nav ul li.cat-wrap .sub").css("display", "none")
+            })
+        })
+
+    </script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+       <div id="wrapper">
+            <header>
+
+                <div class="logo">
+                    logo
+                </div>
+                <nav>
+                    <ul>
+                          <li><a href="/">Home</a></li>
+                          <li class="cat-wrap">
+                              Categories
+                              <div class="sub">
+                                  <ul>
+                                      <li><a href="literature.aspx">Literature</a></li>
+                                      <li><a href="PersonelDevelopment.aspx">Personel Development</a></li>
+                                      <li><a href="#">Child/Young &nbsp</a> </li>
+                                      <li><a href="Biography.aspx">Biography</a></li>
+                                  </ul>
+                              </div>
+                          </li>
+                          <li><a href="default.aspx">Annoucements</a></li>
+                          <li><a href="default.aspx">Communication</a></li>
+                    </ul>
+                </nav>
+                <div class="search-wrap">
+                    <asp:TextBox ID="txtSearch" CssClass="txtSearch" runat="server" placeholder="search" />
+
+                        <asp:button ID="btnSearch"  CssClass="btnSearch" text="OK" runat="server" />
+                </div>
+            </header>
+            
+
+            <div class="banner">
+               There is no friend as a loyal as a book
+
+            </div>
+            <div class="left">
+                <div class="quick-req">
+                    <asp:Panel ID="pnlsign" runat="server">
+                    <div class="up">
+                        Sign In
+                    </div>
+                    <div class="down">
+                        <div class="user">
+                        <span>User Name</span>
+                        <asp:TextBox ID="txtUsername" CssClass="textbox" runat="server" />
+                            </div>
+                        <div class="password">
+                        <span>Password</span>
+                        <asp:TextBox ID="txtpsw" CssClass="textbox" runat="server" TextMode="Password" />
+                            </div>
+                        
+                        <a href="Signup.aspx" class="btnsign">Sign Up</a>
+                        <asp:Button ID="btnSignIn"  CssClass="btnSignIn" Text="Sign In" runat="server" OnClick="btnSignIn_Click"/>
+                        <br />
+                        <asp:Label ID="lblres" Text="" runat="server" />                    
+                        </div>
+                        </asp:Panel>
+                    <asp:Panel ID="pnluser" runat="server" CssClass="pnluser">
+                        Welcome,<asp:Label ID="lblusername" Text="" runat="server" />
+                        <br />
+                        <asp:Button ID="btnquit" CssClass="user-quit" Text="sign out" runat="server" onclick="btnquit_Click"/>
+                    </asp:Panel>
+                        </div>
+                
+                <div class="announcement">
+                    <div class="up">
+                        	    Announcements
+                    </div>
+                   
+                     <div class="down">
+                         <asp:ListView ID="lstann" runat="server">
+                             <ItemTemplate>
+                                    <div class="ann-wrap">
+                         <asp:Label Text='<%#Eval("Title") %>' runat="server" /><br/>
+                              <asp:Label Text='<%#Eval("Announcement") %>' runat="server" /></br>
+                              <asp:Label Text='<%#Eval("Date") %>' runat="server" />
+                                        </div>
+                             </ItemTemplate>
+                         </asp:ListView>
+                      
+                         </div>
+                </div>
+            </div>
+            <div class="content">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+
+            </div>
+            <footer>
+                © 2018 BookRate. All rights reserved.
+            </footer>
+        </div>
+           
+       
+    </form>
+</body>
+</html>
